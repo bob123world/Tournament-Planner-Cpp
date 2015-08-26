@@ -74,8 +74,6 @@ void MainMenu()
 			break;
 		default:cout << "\a";
 		}
-		/*cin.ignore();
-		cin.get();*/
 	} while (ch != '6');
 }
 
@@ -113,7 +111,7 @@ void PlayerMenu()
 
 			break;
 		case '5':
-			ListPlayers();
+			DeletePlayer();
 			break;
 		case '6':
 			break;
@@ -121,8 +119,6 @@ void PlayerMenu()
 			break;
 		default:cout << "\a";
 		}
-		//cin.ignore();
-		//cin.get();
 	} while (ch != '7');
 	return;
 }

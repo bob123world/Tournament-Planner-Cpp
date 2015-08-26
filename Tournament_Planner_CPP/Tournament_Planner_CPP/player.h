@@ -9,5 +9,6 @@
 void NewPlayer(char name[50]);
 void ManualNewPlayer();
 void ListPlayers();
+void DeletePlayer();
 
 #endif#pragma once
