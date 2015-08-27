@@ -19,6 +19,44 @@ private:
 public:
 	void nNewPlayer(char name[50]);
 	void PlotPlayerInfoList() const;
+	// Set
+	void SetId(int nid)
+	{
+		plid = nid;
+	}
+	void SetName(char nname[50])
+	{
+		strcpy_s(name, nname);
+	}
+	void SetWins(int nwins)
+	{
+		wins = nwins;
+	}
+	void SetLoses(int nloses)
+	{
+		loses = nloses;
+	}
+	void SetPtn(double nptn)
+	{
+		ptn = nptn;
+	}
+	void SetOscore(double noscore)
+	{
+		oscore = noscore;
+	}
+	void SetAscore(double nascore)
+	{
+		ascore = nascore;
+	}
+	void SetPoule(int npoule)
+	{
+		poule = npoule;
+	}
+	void SetRound(int nround)
+	{
+		round = nround;
+	}
+	// Get
 	int GetId()
 	{
 		return plid;
@@ -123,6 +161,109 @@ void ListPlayers()
 	inFile.close();
 	cout << "===============================================================================\n";
 	//system("pause");
+}
+
+void ModifyPlayer()
+{
+	player pl;
+	fstream File;
+	int number,inp1;
+	double inp2;
+	char ch, inp3[50];
+
+	File.open("player.dat", ios::binary | ios::in | ios::out);
+	if (!File)
+	{
+		cout << "File could not be open !! Press any Key...";
+		return;
+	}
+	while (!File.eof())
+	{
+
+		do {
+			system("cls");
+			ListPlayers();
+			cout << "\n\n\tWhich player would you like to modify?";
+			cout << "\n\n\t> ";
+			cin >> number;
+
+			File.read(reinterpret_cast<char *> (&pl), sizeof(player));
+			if (pl.GetId() == number)
+			{
+				int pos = (-1)*static_cast<int>(sizeof(player));
+				File.seekp(pos, ios::cur);
+				do {
+					cout << "\n\n\tWhich field would you like to adjust?";
+					cout << "\n\t1. Name";
+					cout << "\n\t2. Wins";
+					cout << "\n\t3. Loses";
+					cout << "\n\t4. Points (Ptn)";
+					cout << "\n\t5. Offensive Score (Oscore)";
+					cout << "\n\t6. Against Score (Ascore)";
+					cout << "\n\t7. Poule";
+					cout << "\n\t8. Round";
+					cout << "\n\t9. None, Exit...";
+					cout << "\n\n\t> ";
+					cin >> ch;
+
+					switch (ch)
+					{
+					case '1':
+						cout << "\n\n\tNew Name: ";
+						cin.ignore();
+						cin.getline(inp3, 50);
+						// Check for completion
+						pl.SetName(inp3);
+						break;
+					case '2':
+						cout << "\n\n\tAmount of wins: ";
+						cin >> inp1;
+						pl.SetWins(inp1);
+						break;
+					case '3':
+						cout << "\n\n\tAmount of loses: ";
+						cin >> inp2;
+						pl.SetLoses(inp2);
+						break;
+					case '4':
+						cout << "\n\n\tAmount of points (double): ";
+						cin >> inp2;
+						pl.SetPtn(inp2);
+						break;
+					case '5':
+						cout << "\n\n\tAmount of offensive scores (double): ";
+						cin >> inp2;
+						pl.SetOscore(inp2);
+						break;
+					case '6':
+						cout << "\n\n\tAmount of against scores (double): ";
+						cin >> inp2;
+						pl.SetOscore(inp2);
+						break;
+					case '7':
+						cout << "\n\n\tNew Poule: ";
+						cin >> inp1;
+						pl.SetPoule(inp1);
+						break;
+					case '8':
+						cout << "\n\n\tNew Round: ";
+						cin >> inp1;
+						pl.SetRound(inp1);
+						break;
+					case '9':
+						break;
+					default:cout << "\a";
+					}
+				} while (ch != 9);
+				File.write(reinterpret_cast<char *> (&pl), sizeof(player));
+			}
+			else
+			{
+				cout << "\n\n Record Not Found ";
+			}
+		} while (number != 0);
+		File.close();
+	}
 }
 
 void DeletePlayer()

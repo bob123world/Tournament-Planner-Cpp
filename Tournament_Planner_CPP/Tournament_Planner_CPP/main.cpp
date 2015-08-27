@@ -18,7 +18,7 @@ void intro()
 		system("cls");
 		cout << "\n\n\tNew Tournament?";
 		cout << "\n\n\ty\tn";
-		cout << "\n\t";
+		cout << "\n\t> ";
 		cin >> input;
 		if (input == 'y' || input == 'Y')
 		{
@@ -52,7 +52,7 @@ void MainMenu()
 		cout << "\n\n\t4. Adjust Game";
 		cout << "\n\n\t5. Set Results";
 		cout << "\n\n\t6. Exit Tournament Planner";
-		cout << "\n\n\t";
+		cout << "\n\n\t> ";
 		cin >> ch;
 
 		switch (ch)
@@ -92,7 +92,7 @@ void PlayerMenu()
 		cout << "\n\n\t5. Delete Player";
 		cout << "\n\n\t6. Delete All Players";
 		cout << "\n\n\t7. Return To Main Menu";
-		cout << "\n\n\t";
+		cout << "\n\n\t> ";
 		cin >> ch;
 
 		switch (ch)
@@ -107,8 +107,7 @@ void PlayerMenu()
 		case '3':
 			break;
 		case '4':
-			ListPlayers();
-
+			ModifyPlayer();
 			break;
 		case '5':
 			DeletePlayer();
