@@ -5,6 +5,7 @@
 #include<string>
 #include <sstream>
 #include"player.h"
+#include"game.h"
 
 using namespace std;
 
